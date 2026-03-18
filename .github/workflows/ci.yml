@@ -60,15 +60,6 @@ jobs:
       - name: Build backend
         run: ./gradlew build
 
-  sonar:
-    name: SonarQube Analysis
-    runs-on: ubuntu-latest
-    needs: [build-front, build-back]
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
