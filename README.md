@@ -155,3 +155,25 @@ docker run -it --rm -p 8080:8080 -p 80:80 -p 443:443 orion-microcrm-standalone:l
 L'application sera disponible sur https://localhost et l'API sur http://localhost:8080.
 
 
+## Notes CI/CD
+
+- Vérification du pipeline GitHub Actions
+- Vérification du build front-end
+- Vérification du build back-end
+- Vérification des tests Angular
+- Vérification des tests Spring Boot
+- Vérification de l’analyse SonarQube Cloud
+- Validation de la branche principale
+- Contrôle de la qualité du code
+- Contrôle des erreurs de configuration
+- Contrôle de la reproductibilité
+- Préparation du déploiement local
+- Vérification de la conteneurisation
+- Centralisation des étapes CI
+- Sécurisation des secrets GitHub
+- Surveillance des résultats d’analyse
+- Validation de l’intégration continue
+- Préparation de la documentation technique
+- Contrôle des commandes de build
+- Vérification du comportement du workflow
+- Test d’un nouveau déclenchement SonarCloud
