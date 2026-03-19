@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: microcrm-back
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: microcrm-front
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
