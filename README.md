@@ -177,3 +177,4 @@ L'application sera disponible sur https://localhost et l'API sur http://localhos
 - Contrôle des commandes de build
 - Vérification du comportement du workflow
 - Test d’un nouveau déclenchement SonarCloud
+
