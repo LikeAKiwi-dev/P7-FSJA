@@ -35,6 +35,12 @@ jobs:
       - name: Build frontend
         run: npm run build
 
+      - name: Upload frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: front-dist
+          path: front/dist/microcrm
+
   build-back:
     name: Build Backend
     runs-on: ubuntu-latest
@@ -63,6 +69,12 @@ jobs:
 
       - name: Build backend
         run: ./gradlew build
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: back-jar
+          path: back/build/libs/*.jar
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
