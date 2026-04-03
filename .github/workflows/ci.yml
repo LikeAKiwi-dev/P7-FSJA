@@ -76,6 +76,50 @@ jobs:
           name: back-jar
           path: back/build/libs/*.jar
 
+  sonar:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    needs: [build-front, build-back]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install frontend dependencies
+        working-directory: front
+        run: npm install
+
+      - name: Run frontend tests with coverage
+        working-directory: front
+        run: npm test -- --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Grant execute permission
+        working-directory: back
+        run: chmod +x gradlew
+
+      - name: Run backend tests with coverage report
+        working-directory: back
+        run: ./gradlew test jacocoTestReport
+
+      - name: Check frontend coverage file
+        run: ls -R front/coverage || true
+
+      - name: Check backend coverage file
+        run: ls -R back/build/reports/jacoco || true
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
