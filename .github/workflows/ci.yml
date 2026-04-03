@@ -29,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run frontend tests
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+      - name: Run frontend tests with coverage
+        run: npm test -- --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage
 
       - name: Build frontend
         run: npm run build
@@ -64,8 +64,8 @@ jobs:
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      - name: Run backend tests
-        run: ./gradlew test
+      - name: Run backend tests with coverage report
+        run: ./gradlew test jacocoTestReport
 
       - name: Build backend
         run: ./gradlew build

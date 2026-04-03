@@ -3,7 +3,7 @@ FROM gradle:8.7-jdk17-alpine AS build
 WORKDIR /app
 
 COPY . .
-RUN chmod +x gradlew && ./gradlew build --no-daemon
+RUN sed -i 's/\r$//' gradlew && chmod +x gradlew && ./gradlew build --no-daemon
 
 FROM eclipse-temurin:17-jre-alpine
 
